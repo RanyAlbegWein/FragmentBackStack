@@ -190,10 +190,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onStackEntryClick(int adapterPosition) {
-        int itemCount = mAdapterBackStack.getItemCount();
-        if (adapterPosition >= 0 && adapterPosition < itemCount) {
+        if (adapterPosition >= 0) {
+            int itemCount = mAdapterBackStack.getItemCount();
             for (int i = itemCount - 1; i >= adapterPosition; --i) {
-                mFragmentManager.popBackStack();
+                mFragmentManager.popBackStackImmediate();
             }
         }
     }
