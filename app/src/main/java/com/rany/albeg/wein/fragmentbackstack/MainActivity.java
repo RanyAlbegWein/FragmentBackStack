@@ -11,7 +11,10 @@ import android.view.View;
 
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, FragmentManager.OnBackStackChangedListener, AdapterBackStack.MyViewHolder.OnStackEntryClickedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,
+                                                               FragmentManager.OnBackStackChangedListener,
+                                                               AdapterBackStack.MyViewHolder
+                                                                       .OnStackEntryClickedListener {
 
     private static final String TAG_FRAGMENT_A = "Tag_FragmentA";
     private static final String TAG_FRAGMENT_B = "Tag_FragmentB";
@@ -93,17 +96,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addC() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fl_fragments_container, new FragmentC(), TAG_FRAGMENT_C)
-                .addToBackStack(getString(R.string.plus_c))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .add(R.id.fl_fragments_container, new FragmentC(), TAG_FRAGMENT_C)
+                        .addToBackStack(getString(R.string.plus_c))
+                        .commit();
     }
 
     private void replaceWithC() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_fragments_container, new FragmentC(), TAG_FRAGMENT_C)
-                .addToBackStack(getString(R.string.tilda_c))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .replace(R.id.fl_fragments_container, new FragmentC(), TAG_FRAGMENT_C)
+                        .addToBackStack(getString(R.string.tilda_c))
+                        .commit();
     }
 
     private void removeC() {
@@ -112,57 +115,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (fragment != null && fragment.isAdded()) {
             fragmentTransaction.remove(fragment)
-                    .addToBackStack(getString(R.string.minus_c))
-                    .commit();
+                               .addToBackStack(getString(R.string.minus_c))
+                               .commit();
         }
     }
 
     private void addA() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fl_fragments_container, new FragmentA(), TAG_FRAGMENT_A)
-                .addToBackStack(getString(R.string.plus_a))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .add(R.id.fl_fragments_container, new FragmentA(), TAG_FRAGMENT_A)
+                        .addToBackStack(getString(R.string.plus_a))
+                        .commit();
     }
 
     private void replaceWithA() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_fragments_container, new FragmentA(), TAG_FRAGMENT_A)
-                .addToBackStack(getString(R.string.tilda_a))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .replace(R.id.fl_fragments_container, new FragmentA(), TAG_FRAGMENT_A)
+                        .addToBackStack(getString(R.string.tilda_a))
+                        .commit();
     }
 
     private void removeA() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         Fragment fragment = mFragmentManager.findFragmentByTag(TAG_FRAGMENT_A);
 
         if (fragment != null && fragment.isAdded()) {
-            fragmentTransaction.remove(fragment)
-                    .addToBackStack(getString(R.string.minus_a))
-                    .commit();
+            mFragmentManager.beginTransaction()
+                            .remove(fragment)
+                            .addToBackStack(getString(R.string.minus_a))
+                            .commit();
         }
     }
 
     private void addB() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fl_fragments_container, new FragmentB(), TAG_FRAGMENT_B)
-                .addToBackStack(getString(R.string.plus_b))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .add(R.id.fl_fragments_container, new FragmentB(), TAG_FRAGMENT_B)
+                        .addToBackStack(getString(R.string.plus_b))
+                        .commit();
     }
 
     private void replaceWithB() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_fragments_container, new FragmentB(), TAG_FRAGMENT_B)
-                .addToBackStack(getString(R.string.tilda_b))
-                .commit();
+        mFragmentManager.beginTransaction()
+                        .replace(R.id.fl_fragments_container, new FragmentB(), TAG_FRAGMENT_B)
+                        .addToBackStack(getString(R.string.tilda_b))
+                        .commit();
     }
 
     private void removeB() {
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
         Fragment fragment = mFragmentManager.findFragmentByTag(TAG_FRAGMENT_B);
         if (fragment != null && fragment.isAdded()) {
-            fragmentTransaction.remove(fragment)
-                    .addToBackStack(getString(R.string.minus_b))
-                    .commit();
+            mFragmentManager.beginTransaction()
+                            .remove(fragment)
+                            .addToBackStack(getString(R.string.minus_b))
+                            .commit();
         }
     }
 
@@ -190,11 +193,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onStackEntryClick(int adapterPosition) {
-        if (adapterPosition >= 0) {
-            int itemCount = mAdapterBackStack.getItemCount();
-            for (int i = itemCount - 1; i >= adapterPosition; --i) {
-                mFragmentManager.popBackStackImmediate();
-            }
+        int itemCount = mAdapterBackStack.getItemCount();
+        for (int i = itemCount - 1; i >= adapterPosition; --i) {
+            mFragmentManager.popBackStackImmediate();
         }
     }
 }
